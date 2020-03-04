@@ -11,6 +11,11 @@ def z_function(w1,w2,x1,x2,e):
 	return summation
 
 
+def get_alpha(x):
+	alpha = 2*np.dot(x,x.T)
+
+	return alpha
+
 
 def get_gradient(w,x,e):
 	t = np.array((2,3,e))
@@ -43,7 +48,13 @@ x = np.array((x1,x2,np.ones(400)))
 
 
 # iterations = 1
-alpha = 0.0001
+# alpha = 0.0001
+alpha = get_alpha(x)
+alpha = np.linalg.inv(alpha)
+
+alpha = (alpha)
+
+# print(alpha.shape)
 
 errors = []
 old_w = []
@@ -51,9 +62,12 @@ old_w = []
 for i in range(200):
 	gradient,error = get_gradient(w,x,e)
 
-	new_w = w - alpha*gradient
 
-	if i%10 == 0:
+	new_w = w - np.dot(alpha,gradient)
+
+	print(gradient)
+
+	if i%1 == 0:
 		print("Iteration: %d - Error: %.4f" % (i, error))
 	old_w.append(np.array((new_w[0],new_w[1])))
 	errors.append(error)
@@ -83,4 +97,7 @@ for i in range(len(old_w)-1):
 	ax.annotate('',xy = all_ws[i+1,:],xytext=all_ws[i,:],arrowprops={'arrowstyle': '->','color':'r','lw':1},va='center',ha='center')
 
 
+plt.show()
+
+plt.plot(errors)
 plt.show()
