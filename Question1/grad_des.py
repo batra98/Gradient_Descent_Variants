@@ -7,7 +7,7 @@ def z_function(w1,w2,x1,x2,e):
 	summation = 0
 
 	for i in range(400):
-		summation = summation + ((w1-2)*x1[i]+(w2-3)*x2[i]+(1-e))**2
+		summation = summation + ((w1-2)*x1[i]+(w2-3)*x2[i]+(-e))**2
 
 	return summation
 
@@ -15,9 +15,9 @@ def z_function(w1,w2,x1,x2,e):
 x1 = np.random.uniform(-4,4,400)
 x2 = np.random.uniform(-4,4,400)
 
-w1 = np.linspace(-10,10,30)
+w1 = np.linspace(-20,20,30)
 # x1 = x1 - 2
-w2 = np.linspace(-10,10,30)
+w2 = np.linspace(-20,20,30)
 # x2 = x2 - 3
 e = np.random.normal(0,0.01)
 # x3 = x3-e
@@ -36,3 +36,11 @@ ax.set_ylabel('y')
 ax.set_zlabel('z')
 
 plt.show()
+
+# fig,ax=plt.subplots(1,1)
+# cp = ax.contourf(X, Y, Z)
+# fig.colorbar(cp) # Add a colorbar to a plot
+# ax.set_title('Filled Contours Plot')
+# #ax.set_xlabel('x (cm)')
+# ax.set_ylabel('y (cm)')
+# plt.show()
