@@ -46,6 +46,8 @@ Z = z_function(X,Y,x1,x2,e)
 w = np.array((-30,-30,0))
 x = np.array((x1,x2,np.ones(400)))
 
+# print(x.shape)
+
 
 # iterations = 1
 # alpha = 0.0001
@@ -73,6 +75,8 @@ for i in range(200):
 	errors.append(error)
 
 	if error < 0.001:
+		old_w.append(np.array((new_w[0],new_w[1])))
+		errors.append(error)
 		print("Completed Gradient Descent")
 		break
 
