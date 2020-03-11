@@ -2,57 +2,7 @@ import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
-
-
-class Network_Backprop:
-	def __init__(self,num_hidden,activation,Jacobian):
-		self.num_hidden = num_hidden
-		self.num_input = 8
-		self.num_output = 1
-		self.activation = activation
-		self.Jacobian = Jacobian
-
-		self.W1 = np.random.rand(self.num_input,self.num_hidden)
-		self.W2 = np.random.rand(self.num_hidden,self.num_output)
-
-
-	def forward_propagate(self,X,Y):
-		X1 = np.dot(X,self.W1)
-		Z1 = self.activation(X1)
-
-		X2 = np.dot(Z1,self.W2)
-
-
-		return X2
-
-	def backpropagate(self,X,Y_,Y):
-		# A = self.activation(np.dot(X,self.W1))
-		# Jb = self.Jacobian(np.dot(A,self.W2))
-
-		# d_W2 = 2*np.dot(A.T,np.dot(Jb,self.activation(np.dot(A,self.W2))))-2*(np.dot(A.T,np.dot(Jb,Y)))
-		# d_W2 = 2*np.dot(A.T,np.dot(A,self.W2))-2*(np.dot(A.T,Y))
-
-		
-
-		
-
-	def train(self,X,Y):
-		Y_ = self.forward_propagate(X,Y)
-		self.backpropagate(X,Y_,Y)
-
-		
-
-def Jacobian_tanh(z):
-	t = 1 - mtanh(z)**2
-	t = t.T.tolist()
-
-	return np.diag(t[0])
-
-def mtanh(z):
-	return np.tanh(z)
-
-
-
+from sklearn.neural_network import MLPRegressor
 
 data = np.matrix(pd.read_excel("Concrete_Data.xls"))
 X = data[:,:-1]
@@ -66,9 +16,30 @@ scaler.fit(X_train)
 X_train = scaler.transform(X_train)
 X_test = scaler.transform(X_test)
 
-net = Network_Backprop(25,mtanh,Jacobian_tanh)
+hidden_layers = 25
+activation = 'tanh'
 
-net.train(X_train,Y_train)
+Y_test = np.ravel(Y_test)
+Y_train = np.ravel(Y_train)
+
+regressor = MLPRegressor(
+			hidden_layer_sizes = (hidden_layers,),
+			activation = activation,
+			batch_size = X_train.shape[0],
+			shuffle = True,
+			max_iter = 1000
+			)
+
+regressor.fit(X_train,Y_train)
+
+Y = regressor.predict(X_test)
+Y_ = regressor.predict(X_train)
+
+print(regressor.loss_curve_)
+print((np.square(Y-Y_test).mean(axis=0)))
+print((np.square(Y_-Y_train).mean(axis=0)))
+# print(np.dot((Y_-Y_train),Y_ - Y_train))
+
 
 
 
