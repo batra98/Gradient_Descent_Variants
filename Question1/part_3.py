@@ -52,9 +52,11 @@ x = np.array((x1,x2,np.ones(400)))
 # iterations = 1
 # alpha = 0.0001
 alpha = get_alpha(x)
-alpha = np.linalg.inv(alpha)
+alpha = 1/max(np.linalg.eigvals(alpha))
 
-alpha = (alpha)
+# alpha = np.linalg.inv(alpha)
+
+# alpha = (alpha)
 
 # print(alpha.shape)
 
