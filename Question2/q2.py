@@ -1,5 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from mpl_toolkits import mplot3d
+
 
 def z_function(X,Y):
 	Z = (X)**2 + 100.*(Y-X**2)**2
@@ -26,6 +28,16 @@ x2 = np.arange(-2,3.05,0.05)
 X,Y = np.meshgrid(x1,x2)
 
 Z = z_function(X,Y)
+
+# def plot_J(X,Y,Z):
+#     fig = plt.figure(figsize = (16,8))
+#     ax = plt.axes(projection='3d')
+#     ax.plot_wireframe(X,Y,Z,color = 'green')
+#     ax.set_xlabel('w1')
+#     ax.set_ylabel('w2')
+#     ax.set_zlabel('J(w1,w2)')
+#     plt.show()
+# plot_J(X,Y,Z)
 
 w = np.array((np.random.normal(),np.random.normal()))
 

@@ -1,5 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from mpl_toolkits import mplot3d
+
 
 def z_function(X,Y):
 	Z = (50/9)*((X**2+Y**2)**3) - (209/18)*(X**2+Y**2)**2 + (59/9)*(X**2+Y**2)
@@ -10,8 +12,8 @@ def get_gradient(w):
 	x = w[0]
 	y = w[1]
 
-	dell_x = (100/3)*x*((x**2+y**2)**2) + (209/3)*x*(x**2+y**2) + (118/9)*x
-	dell_y = (100/3)*y*((x**2+y**2)**2) + (209/3)*y*(x**2+y**2) + (118/9)*y
+	dell_x = (100/3)*x*((x**2+y**2)**2) - (209/3)*x*(x**2+y**2) + (118/9)*x
+	dell_y = (100/3)*y*((x**2+y**2)**2) - (209/3)*y*(x**2+y**2) + (118/9)*y
 
 	w_1 = np.array((dell_x,dell_y))
 
@@ -20,14 +22,25 @@ def get_gradient(w):
 	return w_1,error 
 
 
-x1 = np.arange(-3,3,0.5)
-x2 = np.arange(-3,3,0.5)
+x1 = np.linspace(-3,3,250)
+x2 = np.linspace(-3,3,250)
 
 X,Y = np.meshgrid(x1,x2)
 
 Z = z_function(X,Y)
 
-w = np.array((np.random.normal(),np.random.normal()))
+# def plot_J(X,Y,Z):
+#     fig = plt.figure(figsize = (16,8))
+#     ax = plt.axes(projection='3d')
+#     ax.plot_wireframe(X,Y,Z,color = 'green')
+#     ax.set_xlabel('w1')
+#     ax.set_ylabel('w2')
+#     ax.set_zlabel('J(w1,w2)')
+#     plt.show()
+    
+# plot_J(X,Y,Z)
+
+w = np.array((np.random.random(),np.random.random()))
 
 
 alpha = 0.001
@@ -46,8 +59,9 @@ while 1:
 		old_w.append(np.array((new_w[0],new_w[1])))
 		errors.append(error)
 
-	if error < 0.001:
-		print("Completed Gradient Descent")
+	if error < 0.001 or i>10000:
+		if error < 0.001:
+			print("Completed Gradient Descent")
 		old_w.append(np.array((new_w[0],new_w[1])))
 		errors.append(error)
 		break

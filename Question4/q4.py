@@ -1,5 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from mpl_toolkits import mplot3d
+
 
 # def my_tanh(z):
 # 	return np.tanh(z)
@@ -95,3 +97,24 @@ plt.show()
 
 
 
+plt.scatter(train_x1.T[0],train_x1.T[1],marker = 'o')
+plt.scatter(train_x2.T[0],train_x2.T[1],marker = '^')
+
+plt.show()
+x1 = np.linspace(-15,15,200)
+x2 = np.linspace(-15,15,200)
+C = np.ones(200)
+
+X,Y = np.meshgrid(x1,x2)
+
+Z = W[0]*Y+W[1]*Y+W[2]*C
+
+fig = plt.figure(figsize = (16,8))
+ax = plt.axes(projection='3d')
+ax.plot_wireframe(X,Y,Z,color = 'green')
+ax.scatter(train_x1.T[0],train_x1.T[1],marker = 'o')
+ax.scatter(train_x2.T[0],train_x2.T[1],marker = '^')
+ax.set_xlabel('X')
+ax.set_ylabel('Y')
+ax.set_zlabel('J(W)')
+plt.show()
