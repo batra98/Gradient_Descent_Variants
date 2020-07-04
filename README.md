@@ -11,34 +11,38 @@ from mpl_toolkits import mplot3d
 ```
 
 - In the first problem we need to learn a linear function given as follows:
-\begin{equation}
-    y = 2x_{1} + 3x_{2} + \epsilon
-\end{equation}
-where $\epsilon \sim \mathcal{N}(0,0.01) \ (\mathcal{N}$ is the Gaussain distribution).
-- The linear function must pass through origin (as bias is $0$).
+
+<p align="center">
+	<img src="https://render.githubusercontent.com/render/math?math=y = 2x_{1} + 3x_{2} + \epsilon">
+</p>
+where <img src="https://render.githubusercontent.com/render/math?math=\epsilon \sim \mathcal{N}(0,0.01) \ (\mathcal{N}"> is the Gaussain distribution).
+- The linear function must pass through origin (as bias is <img src="https://render.githubusercontent.com/render/math?math=0">).
 
 ### 1.1 Objective Function
 
 - Let the weight matrix be given as follows:
-\begin{equation}
-    W = \begin{bmatrix}w_{1} \\ w_{2} \\ 0\end{bmatrix} \in R^{3 \times 1}
-\end{equation}
+<p align="center">
+    <img src="https://render.githubusercontent.com/render/math?math=W = \begin{bmatrix}w_{1} \\ w_{2} \\ 0\end{bmatrix} \in R^{3 \times 1}">
+</p>
 - The samples and coefficient matrices are as follows:
-\begin{equation}
-    X = \begin{bmatrix}x_{1} \\ x_{2} \\ 1\end{bmatrix} \in R^{3 \times 400}\\
-    C = \begin{bmatrix}2 \\ 3 \\ \epsilon\end{bmatrix} \in R^{3 \times 1}
-\end{equation}
+<p align="center">
+    <img src="https://render.githubusercontent.com/render/math?math=X = \begin{bmatrix}x_{1} \\ x_{2} \\ 1\end{bmatrix} \in R^{3 \times 400}">
+    <br>
+    <img src="https://render.githubusercontent.com/render/math?math=C = \begin{bmatrix}2 \\ 3 \\ \epsilon\end{bmatrix} \in R^{3 \times 1}">
+</p>
 - The objective function $J(W)$ is given as:
-\begin{equation}
-    J(W) = ((W - C)^{T}X)(X^{T}(W-C))\\
-    J(w_{1},w_{2}) = \sum_{i=1}^{400}\bigg[w_{1}x_{1i} + w_{2}x_{2i} - 2x_{1i} -3x_{2i} -\epsilon\bigg]^{2}
-\end{equation}
-- This loss function needs to be minimized with respect to $w_{1}, w{2}$.
+<p align="center">
+    <img src="https://render.githubusercontent.com/render/math?math=J(W) = ((W - C)^{T}X)(X^{T}(W-C))">
+    <br>
+    <img src="https://render.githubusercontent.com/render/math?math=J(w_{1},w_{2}) = \sum_{i=1}^{400}\bigg[w_{1}x_{1i} + w_{2}x_{2i} - 2x_{1i} -3x_{2i} -\epsilon\bigg]^{2}">
+</p>
+- This loss function needs to be minimized with respect to <img src="https://render.githubusercontent.com/render/math?math=w_{1}, w{2}">.
 - The gradient and Hessian of the given function is given as follows:
-\begin{equation}
-    J^{'}(W) = 2XX^{T}[W-C]\\
-    J^{''}(W) = 2XX^{T}
-\end{equation}
+<p align="center">
+    <img src="https://render.githubusercontent.com/render/math?math=J^{'}(W) = 2XX^{T}[W-C]">
+    <br>
+    <img src="https://render.githubusercontent.com/render/math?math=J^{''}(W) = 2XX^{T}">
+</p>
 
 
 ```python
@@ -108,19 +112,19 @@ plot_J(X,Y,Z)
 
 ### 1.3 Deciding the learning rate
 
-- We know that for a quadratic objective as given above, the $\eta_{opt}$ is given by:
-\begin{equation}
-    \eta_{opt} = [H(W)]^{-1}
-\end{equation}
-where $H$ is the hessian matrix.
+- We know that for a quadratic objective as given above, the <img src="https://render.githubusercontent.com/render/math?math=\eta_{opt}"> is given by:
+<p align="center">
+    <img src="https://render.githubusercontent.com/render/math?math=\eta_{opt} = [H(W)]^{-1}">
+</p>
+where <img src="https://render.githubusercontent.com/render/math?math=H"> is the hessian matrix.
 - But we need a constant step size, so we take:
-\begin{equation}
-    \eta_{opt} = \frac{1}{\max_{i} \lambda_{i}}
-\end{equation}
-where $\lambda_{i}$ are the eigen values of the hessian matrix $H$.
+<p align="center">
+    <img src="https://render.githubusercontent.com/render/math?math=\eta_{opt} = \frac{1}{\max_{i} \lambda_{i}}">
+</p>
+where <img src="https://render.githubusercontent.com/render/math?math=\lambda_{i}"> are the eigen values of the hessian matrix <img src="https://render.githubusercontent.com/render/math?math=H">.
 - We do as shown below:
-    - We first compute the Hessian matrix $H$ as $XX^{T}$.
-    - Choose $max \lambda_{i}$ and compute $\eta_{opt}$ as given by the above equation.
+    - We first compute the Hessian matrix <img src="https://render.githubusercontent.com/render/math?math=H"> as <img src="https://render.githubusercontent.com/render/math?math=XX^{T}">.
+    - Choose <img src="https://render.githubusercontent.com/render/math?math=max \lambda_{i}">$ and compute <img src="https://render.githubusercontent.com/render/math?math=\eta_{opt}"> as given by the above equation.
 
 
 ```python
@@ -312,15 +316,17 @@ for alpha in alphas:
 
 ### <center> Problem-2 <center>
 
-- The objective function $J(x,y)$ (Rosenbrock function) is given by:
-\begin{equation}
-    J(x,y) = x^2 + 100(y-x^2)^2
-\end{equation}
+- The objective function <img src="https://render.githubusercontent.com/render/math?math=J(x,y)"> (Rosenbrock function) is given by:
+<p align="center">
+    <img src="https://render.githubusercontent.com/render/math?math=J(x,y) = x^2 + 100(y-x^2)^2">
+</p>
 - The derivatives of the objective function are as follows:
-\begin{equation}
-    \frac{\partial{J(x,y)}}{\partial{x}} = 2x + 400x(y-x^2)\\
-    \frac{\partial{J(x,y)}}{\partial{y}} = 200y + 200(x^2)\\   
-\end{equation}
+<p align="center">
+    <img src="https://render.githubusercontent.com/render/math?math=\frac{\partial{J(x,y)}}{\partial{x}} = 2x + 400x(y-x^2)">
+    <br>
+    <img src="https://render.githubusercontent.com/render/math?math=\frac{\partial{J(x,y)}}{\partial{y}} = 200y + 200(x^2)">
+    <br>   
+</p>
 
 
 ```python
@@ -360,14 +366,14 @@ plot_J(X,Y,Z)
 ![png](DL_Assignment_2_files/DL_Assignment_2_19_0.png)
 
 
-- We can see this is a non-convex function so if value of $x,y$ are close to $0$, then it will converge else it can diverge.
+- We can see this is a non-convex function so if value of <img src="https://render.githubusercontent.com/render/math?math=x,y"> are close to <img src="https://render.githubusercontent.com/render/math?math=0">, then it will converge else it can diverge.
 
 ### 2.1 Gradient descent with constant step size
 
 - The update equation for the gradient descent with constant step size is given as follows:
-\begin{equation}
-    W = W - \eta\nabla J(w1,w2)
-\end{equation}
+<p align="center">
+    <img src="https://render.githubusercontent.com/render/math?math=W = W - \eta\nabla J(w1,w2)">
+</p>
 
 
 ```python
@@ -460,10 +466,11 @@ gradient_descent(w,alpha,X,Y,Z)
 
 - Instead of depending only on the current gradient to update the weight, gradient descent with momentum replaces the gradient with V (which stands for velocity), the exponential moving average of current and past gradients.
 
-\begin{equation}
-    W_{t+1} = W_t - \eta V_t\\
-    V_{t} = \beta V_{t-1} + (1-\beta)\nabla J(w_1,w_2)
-\end{equation}
+<p align="center">
+    <img src="https://render.githubusercontent.com/render/math?math=W_{t+1} = W_t - \eta V_t">
+    <br>
+    <img src="https://render.githubusercontent.com/render/math?math=V_{t} = \beta V_{t-1} + (1-\beta)\nabla J(w_1,w_2)">
+</p>
 
 
 ```python
@@ -556,13 +563,15 @@ gradient_polyak(w,alpha,beta,V,X,Y,Z)
 ### 2.3 Nestrov's accelerated gradient descent
 
 - This is similar to polyak's methods but utilizes projected gradients instead of simple gradients.
-\begin{equation}
-    W_{t+1} = W_t - \eta V_t\\
-    V_{t} = \beta V_{t-1} + (1-\beta)\nabla_{W^{*}} J(w_1,w_2)\\
-    W^{*} = W_{t} - \eta V_{t-1}
-\end{equation}
+<p align="center">
+    <img src="https://render.githubusercontent.com/render/math?math=W_{t+1} = W_t - \eta V_t">
+    <br>
+    <img src="https://render.githubusercontent.com/render/math?math=V_{t} = \beta V_{t-1} + (1-\beta)\nabla_{W^{*}} J(w_1,w_2)">
+    <br>
+    <img src="https://render.githubusercontent.com/render/math?math=W^{*} = W_{t} - \eta V_{t-1}">
+</p>
 
-where $\nabla_{W^{*}} J(w_1,w_2)$ are the projected gradients.
+where <img src="https://render.githubusercontent.com/render/math?math=\nabla_{W^{*}} J(w_1,w_2)"> are the projected gradients.
 
 
 ```python
@@ -676,19 +685,22 @@ gradient_nestrov(w,alpha,beta,V,X,Y,Z)
 ### 2.4 Gradient descent with Adam Optimizer
 
 - Adaptive moment estimation, or Adam optimizes as follows:
-    - It acts upon the gradient component by using $V$, the exponential average of gradients.
-    - It acts upon the learning rate component by dividing the learning rate $\eta$ by square root of $S$, the exponential moving average of squared gradients.
+    - It acts upon the gradient component by using <img src="https://render.githubusercontent.com/render/math?math=V">, the exponential average of gradients.
+    - It acts upon the learning rate component by dividing the learning rate $\eta$ by square root of <img src="https://render.githubusercontent.com/render/math?math=S">, the exponential moving average of squared gradients.
     
-\begin{equation}
-    W_{t+1} = W_t - \frac{\alpha}{\sqrt{\hat{S}_t}+\epsilon} \hat{V}_t\\
-    \hat{V}_t = \frac{V_t}{1-\beta^{t}_1}\\
-    \hat{S}_t = \frac{S_t}{1-\beta^{t}_2}
-\end{equation}
+<p align="center">
+    <img src="https://render.githubusercontent.com/render/math?math=W_{t+1} = W_t - \frac{\alpha}{\sqrt{\hat{S}_t}+\epsilon} \hat{V}_t">
+    <br>
+    <img src="https://render.githubusercontent.com/render/math?math=\hat{V}_t = \frac{V_t}{1-\beta^{t}_1}">
+    <br>
+    <img src="https://render.githubusercontent.com/render/math?math=\hat{S}_t = \frac{S_t}{1-\beta^{t}_2}">
+</p>
 
-\begin{equation}
-      V_{t} = \beta_1 V_{t-1} + (1 - \beta_1)\nabla J(w_1,w_2)\\
-      S_{t} = \beta_2 V_{t-1} + (1 - \beta_2)\nabla^2 J(w_1,w_2)
-\end{equation}
+<p align="center">
+      <img src="https://render.githubusercontent.com/render/math?math=V_{t} = \beta_1 V_{t-1} + (1 - \beta_1)\nabla J(w_1,w_2)">
+      <br>
+      <img src="https://render.githubusercontent.com/render/math?math=S_{t} = \beta_2 V_{t-1} + (1 - \beta_2)\nabla^2 J(w_1,w_2)">
+</p>
 
 
 ```python
@@ -834,15 +846,17 @@ gradient_adam(w,alpha,beta1,beta2,epsilon,V,S,X,Y,Z)
 
 ### <center> Problem-3 <center>
 
-- The objective function $J(x,y)$ is given by:
-\begin{equation}
-    J(x,y) = \frac{50(x^2+y^2)^3}{9} - \frac{209(x^2+y^2)^2}{18} + \frac{59(x^2+y^2)}{9}
-\end{equation}
+- The objective function <img src="https://render.githubusercontent.com/render/math?math=J(x,y)"> is given by:
+<p align="center">
+    <img src="https://render.githubusercontent.com/render/math?math=J(x,y) = \frac{50(x^2+y^2)^3}{9} - \frac{209(x^2+y^2)^2}{18} + \frac{59(x^2+y^2)}{9}">
+</p>
 - The derivatives of the objective function are as follows:
-\begin{equation}
-    \frac{\partial{J(x,y)}}{\partial{x}} = \frac{100x(x^2+y^2)^2}{3} - \frac{209x(x^2+y^2)}{3} + \frac{118x}{9}\\
-    \frac{\partial{J(x,y)}}{\partial{y}} = \frac{100y(x^2+y^2)^2}{3} - \frac{209y(x^2+y^2)}{3} + \frac{118y}{9}\\
-\end{equation}
+<p align="center">
+    <img src="https://render.githubusercontent.com/render/math?math=\frac{\partial{J(x,y)}}{\partial{x}} = \frac{100x(x^2+y^2)^2}{3} - \frac{209x(x^2+y^2)}{3} + \frac{118x}{9}">
+    <br>
+    <img src="https://render.githubusercontent.com/render/math?math=\frac{\partial{J(x,y)}}{\partial{y}} = \frac{100y(x^2+y^2)^2}{3} - \frac{209y(x^2+y^2)}{3} + \frac{118y}{9}">
+    <br>
+</p>
 
 
 ```python
@@ -882,9 +896,9 @@ plot_J(X,Y,Z)
 ![png](DL_Assignment_2_files/DL_Assignment_2_37_0.png)
 
 
-- We see that the function is convex but it has a local minima at $x^2+y^2 = 1$, so while performing gradient descent we might get stuck in local minima.
-- If we randomly initialize $W$, then it can lead to some problems.
-- In order to get convergence, we can initialize $x,y$ such that $x^2+y^2 < 1$.
+- We see that the function is convex but it has a local minima at <img src="https://render.githubusercontent.com/render/math?math=x^2+y^2 = 1">, so while performing gradient descent we might get stuck in local minima.
+- If we randomly initialize <img src="https://render.githubusercontent.com/render/math?math=W">, then it can lead to some problems.
+- In order to get convergence, we can initialize <img src="https://render.githubusercontent.com/render/math?math=x,y"> such that <img src="https://render.githubusercontent.com/render/math?math=x^2+y^2 < 1">.
 
 ### 3.1 Gradient descent with constant step size
 
@@ -1050,30 +1064,33 @@ gradient_adam(w,alpha,beta1,beta2,epsilon,V,S,X,Y,Z)
 
 ## <center> Problem-4 <center>
 
-- The objective function $J(W)$ is given by:
-\begin{equation}
-    J(W) = [X^{T}W - Y]^{T}[X^{T}W - Y]
-\end{equation}
+- The objective function <img src="https://render.githubusercontent.com/render/math?math=J(W)"> is given by:
+<p align="center">
+    <img src="https://render.githubusercontent.com/render/math?math=J(W) = [X^{T}W - Y]^{T}[X^{T}W - Y]">
+</p>
 where: 
     - the weight matrix be given as follows:
-\begin{equation}
-    W = \begin{bmatrix}w_{1} \\ w_{2} \\ 1\end{bmatrix} \in R^{3 \times 1}
-\end{equation}
+<p align="center">
+    <img src="https://render.githubusercontent.com/render/math?math=W = \begin{bmatrix}w_{1} \\ w_{2} \\ 1\end{bmatrix} \in R^{3 \times 1}">
+</p>
 - The samples for training are as follows:
-\begin{equation}
-    X = \begin{bmatrix}x_{1} \\ x_{2} \\ 1\end{bmatrix} \in R^{3 \times 400}\\
-    Y = \begin{bmatrix}y_{1}\end{bmatrix} \in R^{1 \times 400}
-\end{equation}
+<p align="center">
+    <img src="https://render.githubusercontent.com/render/math?math=X = \begin{bmatrix}x_{1} \\ x_{2} \\ 1\end{bmatrix} \in R^{3 \times 400}">
+    <br>
+    <img src="https://render.githubusercontent.com/render/math?math=Y = \begin{bmatrix}y_{1}\end{bmatrix} \in R^{1 \times 400}">
+</p>
 - The samples for testing are as follows:
-\begin{equation}
-    X_{test} = \begin{bmatrix}x_{1} \\ x_{2} \\ 1\end{bmatrix} \in R^{3 \times 200}\\
-    Y_{test} = \begin{bmatrix}y_{1}\end{bmatrix} \in R^{1 \times 200}
-\end{equation}
+<p align="center">
+    <img src="https://render.githubusercontent.com/render/math?math=X_{test} = \begin{bmatrix}x_{1} \\ x_{2} \\ 1\end{bmatrix} \in R^{3 \times 200}">
+    <br>
+    <img src="https://render.githubusercontent.com/render/math?math=Y_{test} = \begin{bmatrix}y_{1}\end{bmatrix} \in R^{1 \times 200}">
+</p>
 
 - The derivatives of the objective function are as follows:
-\begin{equation}
-    \frac{\partial{J(W)}}{\partial{W}} = 2[X^{T}XW - X^{T}Y]\\   
-\end{equation}
+<p align="center">
+    <img src="https://render.githubusercontent.com/render/math?math=\frac{\partial{J(W)}}{\partial{W}} = 2[X^{T}XW - X^{T}Y]">
+    <br>   
+</p>
 
 ### 1.3 Finding learning rate empirically
 
@@ -1291,7 +1308,7 @@ for alphas in alpha:
     
 
 
-- We see from the above that alpha $\in [0.00001,0.00006]$ give high accuracies of about $90\%-95\%$.
+- We see from the above that alpha <img src="https://render.githubusercontent.com/render/math?math=\in [0.00001,0.00006]"> give high accuracies of about <img src="https://render.githubusercontent.com/render/math?math=90\%-95\%">.
 
 ### 1.4 Why there is no danger of overfitting/ overtraining in this case
 
@@ -1487,7 +1504,7 @@ for alphas in alpha:
     
 
 
-- We see from the above that alpha $\in [0.00001,0.00006]$ give high accuracies of about $90\%-95\%$.
+- We see from the above that alpha <img src="https://render.githubusercontent.com/render/math?math=\in [0.00001,0.00006]$ give high accuracies of about $90\%-95\%">.
 
 ## <center> Problem-5 <center>
 
