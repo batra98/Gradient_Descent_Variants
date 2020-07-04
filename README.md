@@ -13,9 +13,9 @@ from mpl_toolkits import mplot3d
 - In the first problem we need to learn a linear function given as follows:
 
 <p align="center">
-	<img src="https://render.githubusercontent.com/render/math?math=y = 2x_{1} + 3x_{2} + \epsilon">
+	<img src="https://render.githubusercontent.com/render/math?math=y=2x_{1}+3x_{2}+\epsilon">
 </p>
-where <img src="https://render.githubusercontent.com/render/math?math=\epsilon \sim \mathcal{N}(0,0.01) \ (\mathcal{N}"> is the Gaussain distribution).
+where <img src="https://render.githubusercontent.com/render/math?math=\epsilon\sim\mathcal{N}(0,0.01)\(\mathcal{N}"> is the Gaussain distribution).
 - The linear function must pass through origin (as bias is <img src="https://render.githubusercontent.com/render/math?math=0">).
 
 ### 1.1 Objective Function
@@ -36,7 +36,7 @@ where <img src="https://render.githubusercontent.com/render/math?math=\epsilon \
     <br>
     <img src="https://render.githubusercontent.com/render/math?math=J(w_{1},w_{2}) = \sum_{i=1}^{400}\bigg[w_{1}x_{1i} + w_{2}x_{2i} - 2x_{1i} -3x_{2i} -\epsilon\bigg]^{2}">
 </p>
-- This loss function needs to be minimized with respect to <img src="https://render.githubusercontent.com/render/math?math=w_{1}, w{2}">.
+- This loss function needs to be minimized with respect to <img src="https://render.githubusercontent.com/render/math?math=w_{1},w{2}">.
 - The gradient and Hessian of the given function is given as follows:
 <p align="center">
     <img src="https://render.githubusercontent.com/render/math?math=J^{'}(W) = 2XX^{T}[W-C]">
