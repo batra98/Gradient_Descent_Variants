@@ -3,10 +3,24 @@
 ## Introduction
 In this assignment we analyze how different variants of gradient descent minimize functions.
 
-## <center> Deep Learning : Theory and Practices <center>
-## <center> Assignment 2 <center>
+## :file_folder: File Structure
+The file structure of the repository is as follows:
+```bash
+.
+├── Concrete_Data.xls
+├── DL_Assignment_2-2.pdf
+├── DL_Assignment_2.ipynb
+├── DL_Assignment_2_files
+└── README.md
 
-### <center> Problem-1 <center>
+1 directory, 4 files
+```
+- **DL_Assignment_2-2.pdf** - pdf containing the problems to be solved in the assignment.
+- **DL_Assignment_2.ipynb** - code for the assignment
+- **DL_Assignment_2_files** - contains relevant images.
+- **Concrete_Data.xls** - Dataset used for the last part of the assignment
+
+### <center>  Problem-:one: <center>
 
 
 ```python
@@ -330,7 +344,7 @@ for alpha in alphas:
     
 
 
-### <center> Problem-2 <center>
+### <center> Problem-:two: <center>
 
 <p>
 - The objective function <img src="https://render.githubusercontent.com/render/math?math=J(x,y)"> (Rosenbrock function) is given by:
@@ -865,7 +879,7 @@ gradient_adam(w,alpha,beta1,beta2,epsilon,V,S,X,Y,Z)
     
 
 
-### <center> Problem-3 <center>
+### <center> Problem-:three: <center>
 <p>
 - The objective function <img src="https://render.githubusercontent.com/render/math?math=J(x,y)"> is given by:
 </p>
@@ -1087,7 +1101,7 @@ gradient_adam(w,alpha,beta1,beta2,epsilon,V,S,X,Y,Z)
     
 
 
-## <center> Problem-4 <center>
+## <center> Problem-:four: <center>
 
 <p>
 - The objective function <img src="https://render.githubusercontent.com/render/math?math=J(W)"> is given by:
@@ -1534,7 +1548,7 @@ for alphas in alpha:
 - We see from the above that alpha <img src="https://render.githubusercontent.com/render/math?math=\in [0.00001,0.00006]"> give high accuracies of about 90%-95%.
 </p>
 
-## <center> Problem-5 <center>
+## <center> Problem-:five: <center>
 
 
 ```python
@@ -1807,19 +1821,6 @@ pd.DataFrame(table,columns = ['Train Error','Test Error'],index = ['Backprop wit
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
