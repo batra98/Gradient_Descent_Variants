@@ -1,3 +1,8 @@
+# This Assignment introduces the different variants of gradients descent.
+
+## Introduction
+In this assignment we analyze how different variants of gradient descent minimize functions.
+
 ## <center> Deep Learning : Theory and Practices <center>
 ## <center> Assignment 2 <center>
 
@@ -13,10 +18,12 @@ from mpl_toolkits import mplot3d
 - In the first problem we need to learn a linear function given as follows:
 
 <p align="center">
-	<img src="https://render.githubusercontent.com/render/math?math=y=2x_{1}+3x_{2}+\epsilon">
+	<img src="https://latex.codecogs.com/svg.latex?\inline&space;\dpi{150}&space;\large&space;y=2x_{1}&plus;3x_{2}&plus;\epsilon" title="\large y=2x_{1}+3x_{2}+\epsilon" />
 </p>
-where <img src="https://render.githubusercontent.com/render/math?math=\epsilon\sim\mathcal{N}(0,0.01)\(\mathcal{N}"> is the Gaussain distribution).
+<p>where <img src="https://render.githubusercontent.com/render/math?math=\epsilon\sim\mathcal{N}(0,0.01)\(\mathcal{N}"> is the Gaussain distribution).</p>
+<p>
 - The linear function must pass through origin (as bias is <img src="https://render.githubusercontent.com/render/math?math=0">).
+</p>
 
 ### 1.1 Objective Function
 
@@ -36,7 +43,9 @@ where <img src="https://render.githubusercontent.com/render/math?math=\epsilon\s
     <br>
     <img src="https://render.githubusercontent.com/render/math?math=J(w_{1},w_{2}) = \sum_{i=1}^{400}\bigg[w_{1}x_{1i} + w_{2}x_{2i} - 2x_{1i} -3x_{2i} -\epsilon\bigg]^{2}">
 </p>
+<p>
 - This loss function needs to be minimized with respect to <img src="https://render.githubusercontent.com/render/math?math=w_{1},w{2}">.
+</p>
 - The gradient and Hessian of the given function is given as follows:
 <p align="center">
     <img src="https://render.githubusercontent.com/render/math?math=J^{'}(W) = 2XX^{T}[W-C]">
@@ -111,20 +120,27 @@ plot_J(X,Y,Z)
 - We see that it is a convex optiization function and can be minimized by gradient descent.
 
 ### 1.3 Deciding the learning rate
-
+<p>
 - We know that for a quadratic objective as given above, the <img src="https://render.githubusercontent.com/render/math?math=\eta_{opt}"> is given by:
-<p align="center">
-    <img src="https://render.githubusercontent.com/render/math?math=\eta_{opt} = [H(W)]^{-1}">
 </p>
+<p align="center">
+    <img src="https://render.githubusercontent.com/render/math?math=\eta_{opt}=[H(W)]^{-1}">
+</p>
+<p>
 where <img src="https://render.githubusercontent.com/render/math?math=H"> is the hessian matrix.
+</p>
 - But we need a constant step size, so we take:
 <p align="center">
     <img src="https://render.githubusercontent.com/render/math?math=\eta_{opt} = \frac{1}{\max_{i} \lambda_{i}}">
 </p>
-where <img src="https://render.githubusercontent.com/render/math?math=\lambda_{i}"> are the eigen values of the hessian matrix <img src="https://render.githubusercontent.com/render/math?math=H">.
+<p>
+where <img src="https://render.githubusercontent.com/render/math?math=\lambda_{i}"> are the eigen values of the hessian matrix <img src="https://render.githubusercontent.com/render/math?math=H">.</p>
+
 - We do as shown below:
-    - We first compute the Hessian matrix <img src="https://render.githubusercontent.com/render/math?math=H"> as <img src="https://render.githubusercontent.com/render/math?math=XX^{T}">.
-    - Choose <img src="https://render.githubusercontent.com/render/math?math=max \lambda_{i}">$ and compute <img src="https://render.githubusercontent.com/render/math?math=\eta_{opt}"> as given by the above equation.
+	<p>
+    - We first compute the Hessian matrix <img src="https://render.githubusercontent.com/render/math?math=H"> as <img src="https://render.githubusercontent.com/render/math?math=XX^{T}">.</p>
+    <p>
+    - Choose <img src="https://render.githubusercontent.com/render/math?math=max \lambda_{i}"> and compute <img src="https://render.githubusercontent.com/render/math?math=\eta_{opt}"> as given by the above equation.</p>
 
 
 ```python
@@ -316,7 +332,9 @@ for alpha in alphas:
 
 ### <center> Problem-2 <center>
 
+<p>
 - The objective function <img src="https://render.githubusercontent.com/render/math?math=J(x,y)"> (Rosenbrock function) is given by:
+</p>
 <p align="center">
     <img src="https://render.githubusercontent.com/render/math?math=J(x,y) = x^2 + 100(y-x^2)^2">
 </p>
@@ -365,8 +383,9 @@ plot_J(X,Y,Z)
 
 ![png](DL_Assignment_2_files/DL_Assignment_2_19_0.png)
 
-
+<p>
 - We can see this is a non-convex function so if value of <img src="https://render.githubusercontent.com/render/math?math=x,y"> are close to <img src="https://render.githubusercontent.com/render/math?math=0">, then it will converge else it can diverge.
+</p>
 
 ### 2.1 Gradient descent with constant step size
 
@@ -570,9 +589,9 @@ gradient_polyak(w,alpha,beta,V,X,Y,Z)
     <br>
     <img src="https://render.githubusercontent.com/render/math?math=W^{*} = W_{t} - \eta V_{t-1}">
 </p>
-
+<p>
 where <img src="https://render.githubusercontent.com/render/math?math=\nabla_{W^{*}} J(w_1,w_2)"> are the projected gradients.
-
+</p>
 
 ```python
 def gradient_nestrov(w,alpha,beta,V,X,Y,Z):
@@ -686,7 +705,9 @@ gradient_nestrov(w,alpha,beta,V,X,Y,Z)
 
 - Adaptive moment estimation, or Adam optimizes as follows:
     - It acts upon the gradient component by using <img src="https://render.githubusercontent.com/render/math?math=V">, the exponential average of gradients.
-    - It acts upon the learning rate component by dividing the learning rate $\eta$ by square root of <img src="https://render.githubusercontent.com/render/math?math=S">, the exponential moving average of squared gradients.
+    <p>
+    - It acts upon the learning rate component by dividing the learning rate <img src="https://render.githubusercontent.com/render/math?math=\eta"> by square root of <img src="https://render.githubusercontent.com/render/math?math=S">, the exponential moving average of squared gradients.
+	</p>
     
 <p align="center">
     <img src="https://render.githubusercontent.com/render/math?math=W_{t+1} = W_t - \frac{\alpha}{\sqrt{\hat{S}_t}+\epsilon} \hat{V}_t">
@@ -845,8 +866,9 @@ gradient_adam(w,alpha,beta1,beta2,epsilon,V,S,X,Y,Z)
 
 
 ### <center> Problem-3 <center>
-
+<p>
 - The objective function <img src="https://render.githubusercontent.com/render/math?math=J(x,y)"> is given by:
+</p>
 <p align="center">
     <img src="https://render.githubusercontent.com/render/math?math=J(x,y) = \frac{50(x^2+y^2)^3}{9} - \frac{209(x^2+y^2)^2}{18} + \frac{59(x^2+y^2)}{9}">
 </p>
@@ -895,10 +917,13 @@ plot_J(X,Y,Z)
 
 ![png](DL_Assignment_2_files/DL_Assignment_2_37_0.png)
 
-
+<p>
 - We see that the function is convex but it has a local minima at <img src="https://render.githubusercontent.com/render/math?math=x^2+y^2 = 1">, so while performing gradient descent we might get stuck in local minima.
+</p>
+<p>
 - If we randomly initialize <img src="https://render.githubusercontent.com/render/math?math=W">, then it can lead to some problems.
 - In order to get convergence, we can initialize <img src="https://render.githubusercontent.com/render/math?math=x,y"> such that <img src="https://render.githubusercontent.com/render/math?math=x^2+y^2 < 1">.
+</p>
 
 ### 3.1 Gradient descent with constant step size
 
@@ -1064,7 +1089,9 @@ gradient_adam(w,alpha,beta1,beta2,epsilon,V,S,X,Y,Z)
 
 ## <center> Problem-4 <center>
 
+<p>
 - The objective function <img src="https://render.githubusercontent.com/render/math?math=J(W)"> is given by:
+</p>
 <p align="center">
     <img src="https://render.githubusercontent.com/render/math?math=J(W) = [X^{T}W - Y]^{T}[X^{T}W - Y]">
 </p>
@@ -1307,8 +1334,9 @@ for alphas in alpha:
 
     
 
-
-- We see from the above that alpha <img src="https://render.githubusercontent.com/render/math?math=\in [0.00001,0.00006]"> give high accuracies of about <img src="https://render.githubusercontent.com/render/math?math=90\%-95\%">.
+<p>
+- We see from the above that alpha <img src="https://render.githubusercontent.com/render/math?math=\in [0.00001,0.00006]"> give high accuracies of about 90%-95%.
+</p>
 
 ### 1.4 Why there is no danger of overfitting/ overtraining in this case
 
@@ -1502,9 +1530,9 @@ for alphas in alpha:
 
 
     
-
-
-- We see from the above that alpha <img src="https://render.githubusercontent.com/render/math?math=\in [0.00001,0.00006]$ give high accuracies of about $90\%-95\%">.
+<p>
+- We see from the above that alpha <img src="https://render.githubusercontent.com/render/math?math=\in [0.00001,0.00006]"> give high accuracies of about 90%-95%.
+</p>
 
 ## <center> Problem-5 <center>
 
